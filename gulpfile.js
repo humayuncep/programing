@@ -42,7 +42,7 @@ gulp.task("default", function(){
             baseDir: "./"
         },
         // proxy: '127.0.0.1:8010',
-        port: 3000,
+        port: 4000,
         open: true,
         notify: false,
         middleware: compilePug
