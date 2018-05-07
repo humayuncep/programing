@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>JavaScript ES6</title>
+    <title>Pinterest</title>
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicons/favicon-32x32.png">
@@ -31,19 +31,22 @@
   	        <a class="nav-link" href="./">Home</a>
   	      </li>
   	      <li class="nav-item active">
-  	        <a class="nav-link" href="./ajax.html">AJAX <span class="sr-only">(current)</span></a>
-  	      </li>
-  	      <li class="nav-item">
-  	        <a class="nav-link" href="./">JavaScript ES6 <span class="sr-only">(current)</a>
+  	        <a class="nav-link" href="./">Pinterest <span class="sr-only">(current)</span></a>
   	      </li>
   	    </ul>
   	  </div>
   	</nav>
     <main class="py-5">
-
-      <section id="ajax">
+      <section id="pinterest">
         <div class="container">
-          <h4 class="text-center">AJAX with Promise</h4>
+          <form id="user">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control border-success" placeholder="Enter a pinterest username">
+              <div class="input-group-append">
+                <span class="btn btn-success check">check</span>
+              </div>
+            </div>
+          </form>
           <div class="row justify-content-center mt-4">
             <img src="https://i.redd.it/ounq1mw5kdxy.gif" alt="">
           </div>
@@ -53,6 +56,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="js/ajax.js"></script>
+    <script src="main.js"></script>
   </body>
 </html>

@@ -5,20 +5,19 @@ let getData = (method, url) => {
   return new Promise((resolve, reject) => {
     let xhr = new XMLHttpRequest();
     xhr.open(method, url);
-    xhr.onload = () => {
-      let _this = xhr;
-      if(_this.status >= 200 && _this.status < 300) {
+    xhr.onload = function() {
+      if(this.status >= 200 && this.status < 300) {
         resolve(xhr.response);
       } else {
         reject({
-          status: _this.status,
+          status: this.status,
           statusText: xhr.statusText,
         });
       }
     };
     xhr.onerror = () => {
       reject({
-        status: _this.status,
+        status: this.status,
         statusText: xhr.statusText,
       });
     };

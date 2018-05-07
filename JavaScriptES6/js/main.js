@@ -187,13 +187,29 @@ $defaultParamsCheck.onclick = () => {
 // Spread Operator
 /////////////////////////
 let args1 = [1, 2, 3];
-let args2 = [4, 5, 6];
+// let args2 = [4, 5, 6];
+let args2 = {
+  name: 'huka',
+  email: 'email',
+  password: 'secret'
+};
 
-let sum = (a, b, c) => {
-  return a + b + c;
+let func = (huka, ...data) => {
+  // const {name, password, ...baal} = args2;
+  //
+  // console.log(name);
+  // console.log(baal);
+  // console.log(args2);
+
+  console.log(huka);
+  console.log(data);
 }
-
+// let sum = (a, b, c) => {
+//   return a + b + c;
+// }
+func({name: 'huka'}, {name: 'ani'});
 // console.log(sum.apply(null, args1));
+
 // console.log(sum(...args2));
 
 
@@ -295,7 +311,7 @@ let getData = (method, url) => {
     xhr.open(method, url);
     xhr.onload = () => {
       let _this = xhr;
-      console.log(this);
+      // console.log(this);
       if(_this.status >= 200 && _this.status < 300) {
         resolve(xhr.response);
       } else {
@@ -326,26 +342,26 @@ getData("GET", "https://jsonplaceholder.typicode.com/photos").then((data) => {
 /////////////////////////
 // Generators
 /////////////////////////
-function* g1() {
-  console.log("Hello");
-  yield "Yield 1 Ran..."
-  console.log("World");
-  yield "Yield 2 Ran..."
-  return "Returned.."
-}
-
-let g = g1();
-
-let done = false;
-let yieldResult = {};
-while (!done){
-  yieldResult = g.next()
-  console.log(yieldResult.value);
-  if(yieldResult.done){
-    done = true;
-  }
-}
-
-for(let val of g){
-  console.log(val);
-}
+// function* g1() {
+//   console.log("Hello");
+//   yield "Yield 1 Ran..."
+//   console.log("World");
+//   yield "Yield 2 Ran..."
+//   return "Returned.."
+// }
+//
+// let g = g1();
+//
+// let done = false;
+// let yieldResult = {};
+// while (!done){
+//   yieldResult = g.next()
+//   console.log(yieldResult.value);
+//   if(yieldResult.done){
+//     done = true;
+//   }
+// }
+//
+// for(let val of g){
+//   console.log(val);
+// }
