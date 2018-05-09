@@ -1,0 +1,20 @@
+{
+  "name": "scss2css",
+  "version": "1.0.0",
+  "description": "Compile scss to css",
+  "main": "index.js",
+  "scripts": {
+    "css": "node-sass scss/ -o css/"
+  },
+  "keywords": [
+    "scss",
+    "css",
+    "compile"
+  ],
+  "author": "Humayun kabir",
+  "license": "MIT",
+  "devDependencies": {
+    "bourbon": "^5.0.0",
+    "node-sass": "^4.9.0"
+  }
+}
