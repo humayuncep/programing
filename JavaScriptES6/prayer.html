@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript ES6</title>
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicons/favicon-16x16.png">
+  <link rel="manifest" href="img/favicons/site.webmanifest">
+  <link rel="mask-icon" href="img/favicons/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="img/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-config" content="img/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="../">
+    <img src="../img/programing.png" alt="Programing" width="40">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="./">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./ajax.html">AJAX</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./">JavaScript ES6</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="./prayer.html">Prayer Time <span class="sr-only">(current)</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<main class="py-5">
+
+  <section id="ajax">
+    <div class="container">
+      <h4 class="text-center">Time</h4>
+      <form id="userFrom">
+        <div class="form-group row">
+          <label class="col-lg-2">Latitude</label>
+          <div class="col">
+            <input type="number" class="form-control latitude" placeholder="latitude">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-lg-2">Longitude</label>
+          <div class="col">
+            <input type="number" class="form-control longitude" placeholder="longitude">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-lg-2">Date</label>
+          <div class="col">
+            <input type="month" class="form-control date" placeholder="date">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col offset-lg-2">
+            <button class="btn btn-primary" type="button">Submit</button>
+          </div>
+        </div>
+      </form>
+      <div class="row justify-content-center mt-4 app">
+        <img src="https://i.redd.it/ounq1mw5kdxy.gif" alt="">
+      </div>
+    </div>
+  </section>
+</main>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script src="js/prayer.js"></script>
+</body>
+</html>
