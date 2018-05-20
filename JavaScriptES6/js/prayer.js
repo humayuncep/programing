@@ -35,7 +35,7 @@ let currentlocation = () => navigator.geolocation.getCurrentPosition(function(po
 let newUrl = (latitude = 24.9094395, longitude = 91.8331254, date = "2018-05") => {
 	let month = date.split("-")[1];
 	let year = date.split("-")[0];
-	return `http://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=2&month=${month}&year=${year}`;
+	return `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=2&month=${month}&year=${year}`;
 };
 
 let userFrom = document.getElementById("userFrom");
