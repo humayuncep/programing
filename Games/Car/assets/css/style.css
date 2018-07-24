@@ -1,0 +1,20 @@
+.streets{
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+}
+.street{ flex: 1; }
+
+.street.first{ background: repeating-linear-gradient(45deg, gray, gray 10px, darkgray 10px, darkgray 20px) }
+.street.second{
+    background: repeating-linear-gradient(0deg, gray, gray 10px, darkgray 10px, darkgray 20px);
+    border-left: 10px dashed white;
+    border-right: 10px dashed white;
+}
+.street.third{ background: repeating-linear-gradient(-45deg, gray, gray 10px, darkgray 10px, darkgray 20px) }
+
+.streets .car{
+    position: absolute;
+    width: 30%;
+    bottom: 15px;
+}

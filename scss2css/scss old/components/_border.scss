@@ -3,69 +3,69 @@ $direction: "";
     .border#{$direction}{
         border: 1px solid currentColor !important;
     }
-    .border-top#{$direction}{
+    .border#{$direction}-top{
         border-top: 1px solid currentColor !important;
     }
-    .border-right#{$direction}{
+    .border#{$direction}-right{
         border-right: 1px solid currentColor !important;
     }
-    .border-bottom#{$direction}{
+    .border#{$direction}-bottom{
         border-bottom: 1px solid currentColor !important;
     }
-    .border-left#{$direction}{
+    .border#{$direction}-left{
         border-left: 1px solid currentColor !important;
     }
-    .border-x#{$direction}{
+    .border#{$direction}-x{
         border-left: 1px solid currentColor !important;
         border-right: 1px solid currentColor !important;
     }
-    .border-y#{$direction}{
+    .border#{$direction}-y{
         border-top: 1px solid currentColor !important;
         border-bottom: 1px solid currentColor !important;
 	}
-	.border-dashed#{$direction}{
+	.border#{$direction}-dashed{
         border: 1px dashed currentColor !important;
     }
-    .border-dashed-top#{$direction}{
+    .border#{$direction}-dashed-top{
         border-top: 1px dashed currentColor !important;
     }
-    .border-dashed-right#{$direction}{
+    .border#{$direction}-dashed-right{
         border-right: 1px dashed currentColor !important;
     }
-    .border-dashed-bottom#{$direction}{
+    .border#{$direction}-dashed-bottom{
         border-bottom: 1px dashed currentColor !important;
     }
-    .border-dashed-left#{$direction}{
+    .border#{$direction}-dashed-left{
         border-left: 1px dashed currentColor !important;
     }
-    .border-dashed-x#{$direction}{
+    .border#{$direction}-dashed-x{
         border-left: 1px dashed currentColor !important;
         border-right: 1px dashed currentColor !important;
     }
-    .border-dashed-y#{$direction}{
+    .border#{$direction}-dashed-y{
         border-top: 1px dashed currentColor !important;
         border-bottom: 1px dashed currentColor !important;
 	}
 	.border#{$direction}-0{
         border-width: 0 !important;
     }
-    .border-top#{$direction}-0{
+    .border#{$direction}-top-0{
         border-top-width: 0 !important;
     }
-    .border-right#{$direction}-0{
+    .border#{$direction}-right-0{
         border-right-width: 0 !important;
     }
-    .border-bottom#{$direction}-0{
+    .border#{$direction}-bottom-0{
         border-bottom-width: 0 !important;
     }
-    .border-left#{$direction}-0{
+    .border#{$direction}-left-0{
         border-left-width: 0 !important;
     }
-    .border-x#{$direction}-0{
+    .border#{$direction}-x-0{
         border-left-width: 0 !important;
         border-right-width: 0 !important;
     }
-    .border-y#{$direction}-0{
+    .border#{$direction}-y-0{
         border-top-width: 0 !important;
         border-bottom-width: 0 !important;
 	}
@@ -100,11 +100,11 @@ $direction: -xl;
 /********************************
     Responsive border radius
 ********************************/
-.radius-primary{ border-radius: $radius-primary !important; }
-.radius-secondary{ border-radius: $radius-secondary !important; }
-.radius-capsule { border-radius: $radius-capsule !important; }
-.radius-square{ border-radius: 0 !important; }
-.radius-round{ border-radius: 100% !important; }
+// .radius-primary{ border-radius: $radius-primary !important; }
+// .radius-secondary{ border-radius: $radius-secondary !important; }
+// .radius-capsule { border-radius: $radius-capsule !important; }
+// .radius-square{ border-radius: 0 !important; }
+// .radius-round{ border-radius: 100% !important; }
 
 $screen-slugs: (-sm: mobile, -md: tablet, -lg: desktop, -xl: wide);
 $amount-slugs: (0: "-0", $radius-primary: -primary, $radius-secondary: -secondary, $radius-capsule: -capsule, 100%: -round);
@@ -112,8 +112,11 @@ $direction-slugs: (tr: -top-right, tl: -top-left, br: -bottom-right, bl: -bottom
 
 @mixin radius-manipulation($screen-slug){
     @each $index, $amount-slug in $amount-slugs{
+        .radius#{$screen-slug}#{$amount-slug}{
+            border-radius: $index !important;
+        }
         @each $i, $direction-slug in $direction-slugs{
-            .radius-#{$i}#{$screen-slug}#{$amount-slug}{
+            .radius#{$screen-slug}-#{$i}#{$amount-slug}{
                 border#{$direction-slug}-radius: $index !important;
             }
         }

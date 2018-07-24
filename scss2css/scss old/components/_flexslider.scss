@@ -25,16 +25,20 @@
         }
     }
 }
-.flex-direction-nav a{
-    &.flex-next:before {
-        font-family: FontAwesome;
-        content: "\f105";
-        line-height: 40px;
-        text-shadow: none;
-    }
-    &:before{
-        font-family: FontAwesome;
-        content: "\f104";   
-    }
+
+.flex-direction-nav{
+  a[class*="flex-"]:before{
+    content: " ";
+    height: 15px;
+    width: 15px;
+    border-right: 2px solid #7f7f7f;
+    border-top: 2px solid #7f7f7f;
+    margin: 10px;
+  }
+  a.flex-next:before{
+    transform: rotate(45deg);
+  }
+  a.flex-prev:before{
+    transform: rotate(225deg);
+  }
 }
-    

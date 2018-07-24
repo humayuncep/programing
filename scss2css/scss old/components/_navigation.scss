@@ -23,20 +23,21 @@
 @mixin indicator{
 	position: relative;
 	&:after{
-		content: '\f107';
-		font-family: 'FontAwesome';
+		content: '';
+		border-right: 2px solid currentColor;
+		border-bottom: 2px solid currentColor;
 		position: absolute;
 		right: 0;
-		top: 0;
+		top: 50%;
 		display: block;
 		padding: 0;
-		height: 9px;
-		width: 9px;
+		height: 6px;
+		width: 6px;
 		pointer-events: none;
 		z-index: 2000;
 		transition: transform 0.2s ease-in-out;
-		transform: translateX(-2px) translateY(1px);
-		@include mq($from: desktop) {transform: translateX(-8px); }
+		transform: translate3d(-10px, 7px, 0) rotate(45deg);
+		@include mq($from: desktop) {transform: translate3d(-5px, 5px, 0) rotate(45deg); }
 	}
 }
 // End of Mixins
@@ -128,9 +129,12 @@
 		> a {
 			@include indicator;
 			&:after{
-				top: 6px;
-				@include mq($until: desktop) { right: 10px; }
+				top: 6px; 
+				@include mq($until: desktop) {right: 17px; }
 			}
+		}
+		.has-dropdown > a:after{
+			@include mq($until: desktop) {right: -1px; }
 		}
 		.dropdown{
 			left: 0;
@@ -142,7 +146,7 @@
 			@include indicator;
 			&:after{
 				top: 6px;
-				@include mq($until: desktop) { right: 10px; }
+				@include mq($until: desktop) { right: 17px; }
 			}
 		}
 	}
@@ -173,6 +177,7 @@
 		@include mq($until: desktop) {
 			> li.has-dropdown{ ul.dropdown{
 					padding-left: $el-padding-5;
+					margin-right: $el-padding-4;
 					.has-dropdown >a:after{ top: 0; }
 				}
 			}
@@ -191,8 +196,13 @@
 			
 			li.has-dropdown{
 				.has-dropdown{
-					> a:after{ content: '\f105' }
-					@include hover-focus { > a:after{ transform: translateX(-2px); } }
+					> a:after{
+						border-top: 2px solid currentColor;
+						border-bottom: 0;
+						top: 8px;
+						right: 15px;
+					}
+					@include hover-focus { > a:after{ transform: translate3d(2px, 5px, 0) rotate(45deg); } }
 				}
 				ul.dropdown{
 					display: block;
@@ -292,11 +302,13 @@
 // Hamburger Styles
 //
 ////////////////////////////////////
+.navbar-toggler{
+	border: 0;
+	height: 50px;
+	overflow: hidden;
+}
 .hamburger{
-    padding: 8px;
-    transform: translateY(-5px);
     .hamburger-box{
-        height: 0;
         width: 30px;
         .hamburger-inner{
             &, &::after, &::before{

@@ -58,9 +58,6 @@ small, .small{font-size: modular-scale(-1);}
     margin-right: 6px;
 }
 
-.test{
-  background-color: red;
-}
 
 // font-size helpers
 $i : -1;
@@ -131,7 +128,7 @@ $i : -1;
 .fw-900{font-weight: 900 !important;}
 
 .text-normal{text-transform: none !important;}
-
+.text-smallcaps{font-variant: small-caps;}
 
 .ls{letter-spacing: 2px !important;}
 
