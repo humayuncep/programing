@@ -1,0 +1,57 @@
+/*Reset*/
+*{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+/*Streets*/
+.streets{
+    height: 100vh;
+    max-width: 300px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+}
+.street{
+  flex: 1;
+  border-left: 5px double white;
+  border-right: 5px double white;
+}
+.street.first{ background: repeating-linear-gradient(90deg, gray, gray 10px, darkgray 10px, darkgray 20px); }
+.street.second{ background: repeating-linear-gradient(0deg, gray, gray 10px, darkgray 10px, darkgray 20px); }
+.street.third{ background: repeating-linear-gradient(90deg, gray, gray 10px, darkgray 10px, darkgray 20px); }
+.street.fourth{ background: repeating-linear-gradient(0deg, gray, gray 10px, darkgray 10px, darkgray 20px); }
+.street.first{ background: repeating-linear-gradient(45deg, gray, gray 10px, darkgray 10px, darkgray 20px); }
+.street.second{ background: repeating-linear-gradient(-45deg, gray, gray 10px, darkgray 10px, darkgray 20px); }
+.street.third{ background: repeating-linear-gradient(45deg, gray, gray 10px, darkgray 10px, darkgray 20px); }
+.street.fourth{ background: repeating-linear-gradient(-45deg, gray, gray 10px, darkgray 10px, darkgray 20px); }
+
+/*Car*/
+.car{
+    position: absolute;
+    width: 12.5%;
+}
+
+.car.user{
+  bottom: 0;
+  left: 37.5%;
+  transform: translateX(-50%) translateY(100%);
+}
+.car.first{
+  left: 12.5%;
+  transform: translateX(-50%);
+}
+.car.second{
+  left: 62.5%;
+  transform: translateX(-50%);
+}
+.car.third{
+  left: 87.5%;
+  transform: translateX(-50%);
+}
