@@ -17,11 +17,12 @@ document.addEventListener('DOMContentLoaded', event => {
 const getData = (collection) => {
   const db = firebase.firestore();
   db.settings({ timestampsInSnapshots: true });
-  db.collection(collection).get().then(snapshot => {
-    snapshot.docs.forEach(doc => {
-      console.log(doc.data());
-    });
-  }).catch(console.log);
+  // db.collection(collection).get().then(snapshot => {
+  //   snapshot.docs.forEach(doc => {
+  //     // console.log(doc.data());
+  //   });
+  // }).catch(console.log);
+  return db.collection(collection);
 };
 
 
@@ -29,7 +30,23 @@ const getData = (collection) => {
 |   Update User
 -----------------------------------------------*/
 const updateUser = (event) => {
-  getData('users');
+  getData('users').get().then(snapshot => {
+    snapshot.forEach(doc => {
+      console.log(doc.data());
+    });
+  }).catch(console.log);
+};
+
+
+/*-----------------------------------------------
+|   Scoreboard
+-----------------------------------------------*/
+const showScore = (event) => {
+  const score = getData('scoreboard').where('id', '==', 1).get().then(snapshot => {
+    snapshot.forEach(doc => {
+      console.log(doc.data());
+    });
+  }).catch(console.log);
 };
 
 
@@ -183,7 +200,7 @@ function startGame() {
       return  this.H($(Selector.STREATS)) - this.H(c);
     },
   };
-  
+
   TweenMax.fromTo(carUser, 8, { y: 0 }, { y: -D.dest(carUser), ease: Power0.easeNone }).delay(0.5);
   TweenMax.fromTo(carFirst, 6, { y: 0 }, { y: D.dest(carFirst), ease: Power0.easeNone }).delay(0.5);
   TweenMax.fromTo(carSecond, 3, { y: 0 }, { y: D.dest(carSecond), ease: Power0.easeNone }).delay(0.5);
