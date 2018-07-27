@@ -27,10 +27,10 @@ $(document).ready(() => {
         <div class="street second"></div>
         <div class="street third"></div>
         <div class="street fourth"></div>
-        <img class='user car' src='assets/img/car.png' alt="usr's car"/>
-        <img class='car first' src='assets/img/car.png' alt='car'/>
-        <img class='car second' src='assets/img/car.png' alt='car'/>
-        <img class='car third' src='assets/img/car.png' alt='car'/>
+        <img class='user car' src='assets/img/car-wolf.svg' alt="usr's car"/>
+        <img class='car first' src='assets/img/car-basic.svg' alt='car'/>
+        <img class='car second' src='assets/img/car-basic.svg' alt='car'/>
+        <img class='car third' src='assets/img/car-basic.svg' alt='car'/>
       </div>
     `;
     $(Selector.MAIN).append(template);
