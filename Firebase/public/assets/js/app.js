@@ -1,3 +1,52 @@
+const Selector = {
+  WINDOW: window,
+  APP: '#app',
+  MAIN: 'main',
+  STREATS: '.streets',
+  STREAT: '.streat',
+  CAR: '.car',
+  USER: '.user',
+  FIRST: '.first',
+  SECOND: '.second',
+  THIRD: '.third',
+};
+const ClassName = {
+    STREATS: 'streets',
+    STREAT: 'streat',
+    CAR: 'car',
+    USER: 'user',
+    FIRST: 'first',
+    SECOND: 'second',
+    THIRD: 'third',
+};
+const idName = {
+    APP: 'app',
+}
+
+const app = document.getElementById(idName.APP);
+const currentUser = () => firebase.auth().currentUser;
+
+const loginComponent = () => {
+    app.innerHTML = `
+      <div class='d-flex flex-column'>
+        <button class="btn btn-primary" onclick="googleLogin()">Login with Google</button>
+        <button class="btn btn-warning" onclick="playAsGuest(event)">Play as Guest</button>
+      </div>
+    `;
+};
+
+const startGameComponent = (user) => {
+    app.innerHTML = `
+        <div class='d-flex flex-column'>
+            <p class="lead">Welcome ${user.displayName}!!!</p>
+            <button class="btn btn-warning" onclick="signOut()">Sign out</button>
+            <button class="btn btn-danger d-none" onclick="deleteUser(currentUser())">Delete Account</button>
+            <button class="btn btn-play mx-auto" onclick="startGame()">Start</button>
+        </div>
+    `;
+};
+
+
 document.addEventListener('DOMContentLoaded', event => {
   // Initialize Firebase
   const config = {
@@ -9,7 +58,43 @@ document.addEventListener('DOMContentLoaded', event => {
     messagingSenderId: "949462711359"
   };
   firebase.initializeApp(config);
+
+  // Initialize
+  initialize();
 });
+
+
+/*-----------------------------------------------
+|   Get Current User state and initialize
+|   TODO: UPDATE UI
+-----------------------------------------------*/
+const initialize = () => firebase.auth().onAuthStateChanged(user => user ? startGameComponent(user) : loginComponent());
+
+
+/*-----------------------------------------------
+|   Sign Out
+-----------------------------------------------*/
+const signOut = () => firebase.auth().signOut().then(() => loginComponent()).catch(console.log);
+
+
+/*-----------------------------------------------
+|   Delete User
+-----------------------------------------------*/
+const deleteUser = (user) => user.delete().then(() => loginComponent()).catch(console.log);
+
+
+/*-----------------------------------------------
+|   User Record
+|   TODO: Make it worked
+-----------------------------------------------*/
+const userRecord = () => {
+    firebase.auth().getUser(user.uid).then((userRecord) => {
+        // See the UserRecord reference doc for the contents of userRecord.
+        console.log("Successfully fetched user data:", userRecord.toJSON());
+    }).catch(console.log);
+};
+
+
 
 /*-----------------------------------------------
 |   Get Data
@@ -42,7 +127,7 @@ const updateUser = (event) => {
 |   Scoreboard
 -----------------------------------------------*/
 const showScore = (event) => {
-  const score = getData('scoreboard').where('id', '==', 1).get().then(snapshot => {
+  const score = getData('scoreboard').where('email', '==', userInfo.profile.email).get().then(snapshot => {
     snapshot.forEach(doc => {
       console.log(doc.data());
     });
@@ -53,10 +138,12 @@ const showScore = (event) => {
 /*-----------------------------------------------
 |   Google Authentication
 -----------------------------------------------*/
+let userInfo;
 function googleLogin() {
   const provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider)
     .then( result => {
+      userInfo = result.additionalUserInfo;
       let welcomeTemplate = '';
       if(result.additionalUserInfo.isNewUser){
         welcomeTemplate = `
@@ -69,6 +156,9 @@ function googleLogin() {
               <p class="lead mb-0">Welcome ${result.additionalUserInfo.profile.given_name}!!!</p>
             </div>
           </div>
+
+          <button class="btn btn-primary" onclick="updateUser(event)">Users</button>
+          <button class="btn btn-primary" onclick="showScore(event)">Score</button>
           <button class="btn btn-success btn-lg mt-6 mx-auto" onclick="startGame()">Play</button>
         `;
       } else {
@@ -82,127 +172,78 @@ function googleLogin() {
               <p class="lead mb-0">Welcome back ${result.additionalUserInfo.profile.given_name}!!!</p>
             </div>
           </div>
+
+          <button class="btn btn-primary" onclick="updateUser(event)">Users</button>
+          <button class="btn btn-primary" onclick="showScore(event)">Score</button>
           <button class="btn btn-success btn-lg mt-6 mx-auto" onclick="startGame()">Play</button>
        `;
       }
-      document.getElementById('app').innerHTML = welcomeTemplate;
+      app.innerHTML = welcomeTemplate;
     })
     .catch(console.log);
 }
 
-function welcome() {
-  const additionalUserInfo = {
-    isNewUser: true,
-    profile: {
-      email: "humayunkabir.cep@gmail.com",
-      family_name: "kabir",
-      gender: "male",
-      given_name: "Humayun",
-      id: "113570506371993977623",
-      link: "https://plus.google.com/+Humayunkabircep",
-      locale: "en",
-      name: "Humayun kabir",
-      picture: "https://lh4.googleusercontent.com/-0EfeQuhKFkM/AAAAAAAAAAI/AAAAAAAAFkc/guW4Fka2r-U/photo.jpg",
-      verified_email: true,
-    },
-    providerId: 'google.com',
-  };
 
 
-  let welcomeTemplate = '';
-  console.log(additionalUserInfo.additionalUserInfo);
-  if(additionalUserInfo.isNewUser){
-    welcomeTemplate = `
-      <div class="media align-items-center">
-        <img class="img-thumbnail rounded-circle img-fluid mr-3" src=${additionalUserInfo.profile.picture} alt="profile picture" width="150">
-        <div class="media-body">
-          <h4>${additionalUserInfo.profile.name}</h4>
-          <a href=${additionalUserInfo.profile.link} target="_blank">Google+</a>
-          <p class="lead mb-0">Welcome back ${additionalUserInfo.profile.given_name}!!!</p>
-        </div>
-      </div>
-    `;
-  } else {
-    welcomeTemplate = `
-      <div class="media align-items-center">
-        <img class="img-thumbnail rounded-circle img-fluid mr-3" src=${additionalUserInfo.profile.picture} alt="profile picture" width="150">
-        <div class="media-body">
-          <h4>${additionalUserInfo.profile.name}</h4>
-          <a href=${additionalUserInfo.profile.link} target="_blank">Google+</a>
-          <p class="lead mb-0">Welcome ${additionalUserInfo.profile.given_name}!!!</p>
-        </div>
-      </div>
-     `;
-  }
-  document.getElementById('app').innerHTML = welcomeTemplate;
-}
-
-
+/*-----------------------------------------------
+|   Play as Guest
+-----------------------------------------------*/
+function playAsGuest(event) {
+    const element = event.target;
+    element.classList.remove('btn-warning');
+    element.classList.add('btn-danger');
+    element.innerHTML = 'Currently not available';
+};
 
 
 
 /*-----------------------------------------------
- |   Start Game
- -----------------------------------------------*/
-function startGame() {
-  const Selector = {
-    WINDOW: window,
-    APP: '#app',
-    MAIN: 'main',
-    STREATS: '.streets',
-    STREAT: '.streat',
-    CAR: '.car',
-    USER: '.user',
-    FIRST: '.first',
-    SECOND: '.second',
-    THIRD: '.third',
-  };
-  const ClassName = {
-    STREATS: 'streets',
-    STREAT: 'streat',
-    CAR: 'car',
-    USER: 'user',
-    FIRST: 'first',
-    SECOND: 'second',
-    THIRD: 'third',
-  };
-
-  const PrepareStreets = () => {
-    const template = `
-      <div class="streets">
-        <div class="street first"></div>
-        <div class="street second"></div>
-        <div class="street third"></div>
-        <div class="street fourth"></div>
-        <img class='user car' src='assets/img/car-wolf.svg' alt="usr's car"/>
-        <img class='car first' src='assets/img/car-basic.svg' alt='car'/>
-        <img class='car second' src='assets/img/car-basic.svg' alt='car'/>
-        <img class='car third' src='assets/img/car-basic.svg' alt='car'/>
-      </div>
-    `;
-    document.getElementById('app').innerHTML = template;
-  };
-
-  PrepareStreets();
-  const streets = $(Selector.STREATS);
-  const carUser = $(`${Selector.CAR}${Selector.USER}`);
-  const carFirst = $(`${Selector.CAR}${Selector.FIRST}`);
-  const carSecond = $(`${Selector.CAR}${Selector.SECOND}`);
-  const carThird = $(`${Selector.CAR}${Selector.THIRD}`);
-  const D = {
-    windowHeight() {
-      return $(Selector.WINDOW).height();
-    },
-    H(a) {
-      return a.height();
-    },
-    dest(c) {
-      return  this.H($(Selector.STREATS)) - this.H(c);
-    },
-  };
-
-  TweenMax.fromTo(carUser, 8, { y: 0 }, { y: -D.dest(carUser), ease: Power0.easeNone }).delay(0.5);
-  TweenMax.fromTo(carFirst, 6, { y: 0 }, { y: D.dest(carFirst), ease: Power0.easeNone }).delay(0.5);
-  TweenMax.fromTo(carSecond, 3, { y: 0 }, { y: D.dest(carSecond), ease: Power0.easeNone }).delay(0.5);
-  TweenMax.fromTo(carThird, 7, { y: 0 }, { y: D.dest(carThird), ease: Power0.easeNone }).delay(0.5);
+|   Start Game
+-----------------------------------------------*/
+function gameInterfaceComponent() {
+    return new Promise(resolve => {
+        app.innerHTML = `
+            <div class="streets">
+                <div class="street first"></div>
+                <div class="street second"></div>
+                <div class="street third"></div>
+                <div class="street fourth"></div>
+                <img class='user car' src='assets/img/car-wolf.svg' alt="usr's car"/>
+                <img class='car first' src='assets/img/car-basic.svg' alt='car'/>
+                <img class='car second' src='assets/img/car-basic.svg' alt='car'/>
+                <img class='car third' src='assets/img/car-basic.svg' alt='car'/>
+            </div>
+        `;
+        resolve();
+    });
 }
+
+const initiateGame = () => {
+    const streets = document.querySelector(Selector.STREATS);
+    const carUser = document.querySelector(`${Selector.CAR}${Selector.USER}`);
+    const carFirst = document.querySelector(`${Selector.CAR}${Selector.FIRST}`);
+    const carSecond = document.querySelector(`${Selector.CAR}${Selector.SECOND}`);
+    const carThird = document.querySelector(`${Selector.CAR}${Selector.THIRD}`);
+    const D = {
+        windowHeight() {
+            return (Selector.WINDOW).offsetHeight;
+        },
+        H(a) {
+            return a.offsetHeight;
+        },
+        dest(c, p) {
+            return  this.H(p) - this.H(c);
+        },
+    };
+    // console.log(D.dest(carUser, streets), D.H(carUser), D.H(streets), streets, carUser, carFirst, carSecond, carThird);
+    TweenMax.fromTo(carUser, 8, { y: 0 }, { y: -D.dest(carUser, streets), ease: Power0.easeNone }).delay(0.5);
+    TweenMax.fromTo(carFirst, 6, { y: 0 }, { y: D.dest(carFirst, streets), ease: Power0.easeNone }).delay(0.5);
+    TweenMax.fromTo(carSecond, 3, { y: 0 }, { y: D.dest(carSecond, streets), ease: Power0.easeNone }).delay(0.5);
+    TweenMax.fromTo(carThird, 7, { y: 0 }, { y: D.dest(carThird, streets), ease: Power0.easeNone }).delay(0.5);
+};
+
+
+async function startGame() {
+    await gameInterfaceComponent();
+    initiateGame();
+};
