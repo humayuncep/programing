@@ -5,22 +5,6 @@ const getCurrentPosition = (element) => element.getBoundingClientRect();
 
 
 /*-----------------------------------------------
-|   COMPONENTS
------------------------------------------------*/
-const gameInterfaceComponent = (carName = 'dragon') => {
-  app.innerHTML = `
-      <div class="streets">
-          <div class="count-down"><span></span></div>
-          <div class="street first"></div>
-          <div class="street second"></div>
-          <div class="street third"></div>
-          <div class="street fourth"></div>
-          <img class='user car' src='assets/img/car-${carName}.svg' alt="usr's car"/>
-      </div>
-  `;
-};
-
-/*-----------------------------------------------
 |   Start Game
 -----------------------------------------------*/
 function gameInterfacePrepare() {
@@ -28,17 +12,17 @@ function gameInterfacePrepare() {
     gameInterfaceComponent();
     const countDouwn = document.querySelector(Selector.COUNTDOWN);
     const countDouwnElement = countDouwn.querySelector('span');
-    let timer = 3;
+    let timer = 4;
     const countDowner = setInterval(() => {
       if(timer <= 0) {
         clearInterval(countDowner);
         countDouwn.outerHTML = '';
         gameController();
         resolve(timer)
-      }
-      countDouwnElement.innerText = `${timer ? timer : 'GO'}`;
-      TweenMax.fromTo(countDouwn, 1, { scale: 1, opacity: 1 }, { scale: 0.25, opacity: 0, ease: Expo.easeInOut });
-      timer -= 1;
+    }
+    timer -= 1;
+    countDouwnElement.innerText = `${timer !== 0 ? timer : 'GO'}`;
+    TweenMax.fromTo(countDouwn, 1, { scale: 1, opacity: 1 }, { scale: 0.25, opacity: 0, ease: Expo.easeInOut });
     }, 1000);
   });
 }
@@ -64,13 +48,16 @@ const opponentCarIntroduced = () => {
       <img class='car ${lane[0]}' src='assets/img/car-basic.svg' alt='car'/>
       <img class='car ${lane[1]}' src='assets/img/car-basic.svg' alt='car'/>
       <img class='car ${lane[2]}' src='assets/img/car-basic.svg' alt='car'/>
+      <img class='car ${lane[3]}' src='assets/img/car-basic.svg' alt='car'/>
   `;
   const carFirst = document.querySelector(`${Selector.CAR}${Selector.FIRST}`);
   const carSecond = document.querySelector(`${Selector.CAR}${Selector.SECOND}`);
   const carThird = document.querySelector(`${Selector.CAR}${Selector.THIRD}`);
+  const carFourth = document.querySelector(`${Selector.CAR}${Selector.FOURTH}`);
   opponentCarAnimation(carFirst);
   opponentCarAnimation(carSecond);
   opponentCarAnimation(carThird);
+  opponentCarAnimation(carFourth);
 };
 
 
