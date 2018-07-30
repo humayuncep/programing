@@ -2,17 +2,18 @@ const Selector = {
   WINDOW: window,
   APP: '#app',
   MAIN: 'main',
-  STREATS: '.streets',
-  STREAT: '.streat',
+  STREETS: '.streets',
+  STREET: '.streat',
   CAR: '.car',
   USER: '.user',
   FIRST: '.first',
   SECOND: '.second',
   THIRD: '.third',
+  COUNTDOWN: '.count-down',
 };
 const ClassName = {
-    STREATS: 'streets',
-    STREAT: 'streat',
+    STREETS: 'streets',
+    STREET: 'streat',
     CAR: 'car',
     USER: 'user',
     FIRST: 'first',
@@ -21,7 +22,7 @@ const ClassName = {
 };
 const idName = {
     APP: 'app',
-}
+};
 
 const app = document.getElementById(idName.APP);
 const currentUser = () => firebase.auth().currentUser;
@@ -188,62 +189,9 @@ function googleLogin() {
 /*-----------------------------------------------
 |   Play as Guest
 -----------------------------------------------*/
-function playAsGuest(event) {
+const playAsGuest = (event) => {
     const element = event.target;
     element.classList.remove('btn-warning');
     element.classList.add('btn-danger');
     element.innerHTML = 'Currently not available';
-};
-
-
-
-/*-----------------------------------------------
-|   Start Game
------------------------------------------------*/
-function gameInterfaceComponent() {
-    return new Promise(resolve => {
-        app.innerHTML = `
-            <div class="streets">
-                <div class="street first"></div>
-                <div class="street second"></div>
-                <div class="street third"></div>
-                <div class="street fourth"></div>
-                <img class='user car' src='assets/img/car-wolf.svg' alt="usr's car"/>
-                <img class='car first' src='assets/img/car-basic.svg' alt='car'/>
-                <img class='car second' src='assets/img/car-basic.svg' alt='car'/>
-                <img class='car third' src='assets/img/car-basic.svg' alt='car'/>
-            </div>
-        `;
-        resolve();
-    });
-}
-
-const initiateGame = () => {
-    const streets = document.querySelector(Selector.STREATS);
-    const carUser = document.querySelector(`${Selector.CAR}${Selector.USER}`);
-    const carFirst = document.querySelector(`${Selector.CAR}${Selector.FIRST}`);
-    const carSecond = document.querySelector(`${Selector.CAR}${Selector.SECOND}`);
-    const carThird = document.querySelector(`${Selector.CAR}${Selector.THIRD}`);
-    const D = {
-        windowHeight() {
-            return (Selector.WINDOW).offsetHeight;
-        },
-        H(a) {
-            return a.offsetHeight;
-        },
-        dest(c, p) {
-            return  this.H(p) - this.H(c);
-        },
-    };
-    // console.log(D.dest(carUser, streets), D.H(carUser), D.H(streets), streets, carUser, carFirst, carSecond, carThird);
-    TweenMax.fromTo(carUser, 8, { y: 0 }, { y: -D.dest(carUser, streets), ease: Power0.easeNone }).delay(0.5);
-    TweenMax.fromTo(carFirst, 6, { y: 0 }, { y: D.dest(carFirst, streets), ease: Power0.easeNone }).delay(0.5);
-    TweenMax.fromTo(carSecond, 3, { y: 0 }, { y: D.dest(carSecond, streets), ease: Power0.easeNone }).delay(0.5);
-    TweenMax.fromTo(carThird, 7, { y: 0 }, { y: D.dest(carThird, streets), ease: Power0.easeNone }).delay(0.5);
-};
-
-
-async function startGame() {
-    await gameInterfaceComponent();
-    initiateGame();
 };

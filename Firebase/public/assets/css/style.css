@@ -1,57 +1,67 @@
 /*Reset*/
-*{
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: none;
-  box-shadow: none;
-  text-shadow: none;
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    box-shadow: none;
+    text-shadow: none;
 }
-body{
+
+body {
     font-family: 'Racing Sans One', cursive;
     color: #FFFFFF;
     background: #000000;
     overflow: hidden;
 }
-main{
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+main {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-p{ margin-bottom: 1rem; }
+
+p {
+    margin-bottom: 1rem;
+}
 
 /*Buttons*/
-.btn{
-  padding: 0.67rem 1rem;
-  border-radius: 0.125rem;
-  letter-spacing: 0.125rem;
-  text-transform: uppercase;
-  font-family: inherit;
-  margin: 0.25rem;
-  cursor: pointer;
+.btn {
+    padding: 0.67rem 1rem;
+    border-radius: 0.125rem;
+    letter-spacing: 0.125rem;
+    text-transform: uppercase;
+    font-family: inherit;
+    margin: 0.25rem;
+    cursor: pointer;
 }
-.btn-primary{
+
+.btn-primary {
     background-color: #007AFF;
     color: white;
 }
-.btn-success{
+
+.btn-success {
     background-color: #00BB00;
     color: white;
 }
-.btn-warning{
+
+.btn-warning {
     background-color: #FF9500;
     color: white;
 }
-.btn-danger{
+
+.btn-danger {
     background-color: #FF3B30;
     color: white;
 }
-.btn-play{
+
+.btn-play {
     height: 8rem;
     width: 8rem;
     margin: 1rem;
@@ -67,38 +77,47 @@ p{ margin-bottom: 1rem; }
 }
 
 /*Utilities*/
-.d-none{ display: none; }
-.d-flex{ display: flex; }
-.flex-column{ flex-direction: column; }
-.align-items-center{ align-items: center; }
-.justify-content-center{ justify-content: center; }
-.lead{ font-size: 1.6rem; }
-.text-center{ text-align: center; }
-.mx-auto{
+.d-none {
+    display: none;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.lead {
+    font-size: 1.6rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mx-auto {
     margin-right: auto;
     margin-left: auto;
 }
 
-
-
 /*backgrounds*/
-.bg-desert{
+.bg-desert {
     background-image: url(../img/desert-tiny.jpg);
     background-repeat: repeat;
 }
 
-
-
-
-
-
-
-
-
-
-
 /*Streets*/
-.streets{
+.streets {
     height: 100vh;
     width: 30rem;
     margin: 0 auto;
@@ -108,40 +127,87 @@ p{ margin-bottom: 1rem; }
 
     display: flex;
 }
-.street{
-  flex: 1;
-  border-left: 5px double white;
-  border-right: 5px double white;
+
+.street {
+    flex: 1;
+    border-left: 5px double white;
+    border-right: 5px double white;
 }
-.street.first{ background: repeating-linear-gradient(90deg, gray, gray 10px, darkgray 10px, darkgray 20px); }
-.street.second{ background: repeating-linear-gradient(0deg, gray, gray 10px, darkgray 10px, darkgray 20px); }
-.street.third{ background: repeating-linear-gradient(90deg, gray, gray 10px, darkgray 10px, darkgray 20px); }
-.street.fourth{ background: repeating-linear-gradient(0deg, gray, gray 10px, darkgray 10px, darkgray 20px); }
-.street.first{ background: repeating-linear-gradient(45deg, gray, gray 10px, darkgray 10px, darkgray 20px); }
-.street.second{ background: repeating-linear-gradient(-45deg, gray, gray 10px, darkgray 10px, darkgray 20px); }
-.street.third{ background: repeating-linear-gradient(45deg, gray, gray 10px, darkgray 10px, darkgray 20px); }
-.street.fourth{ background: repeating-linear-gradient(-45deg, gray, gray 10px, darkgray 10px, darkgray 20px); }
+
+.street.first {
+    background: repeating-linear-gradient(90deg, gray, gray 10px, darkgray 10px, darkgray 20px);
+}
+
+.street.second {
+    background: repeating-linear-gradient(0deg, gray, gray 10px, darkgray 10px, darkgray 20px);
+}
+
+.street.third {
+    background: repeating-linear-gradient(90deg, gray, gray 10px, darkgray 10px, darkgray 20px);
+}
+
+.street.fourth {
+    background: repeating-linear-gradient(0deg, gray, gray 10px, darkgray 10px, darkgray 20px);
+}
+
+.street.first {
+    background: repeating-linear-gradient(45deg, gray, gray 10px, darkgray 10px, darkgray 20px);
+}
+
+.street.second {
+    background: repeating-linear-gradient(-45deg, gray, gray 10px, darkgray 10px, darkgray 20px);
+}
+
+.street.third {
+    background: repeating-linear-gradient(45deg, gray, gray 10px, darkgray 10px, darkgray 20px);
+}
+
+.street.fourth {
+    background: repeating-linear-gradient(-45deg, gray, gray 10px, darkgray 10px, darkgray 20px);
+}
+/*COUNTDOWN*/
+.count-down{
+    position: absolute;
+    font-size: 20rem;
+    color: #FFFFFF;
+    z-index: 9999;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 /*Car*/
-.car{
+.car {
     position: absolute;
     width: 12.5%;
 }
 
-.car.user{
-  bottom: 0;
-  left: 37.5%;
-  transform: translateX(-50%) translateY(100%);
+.car.user {
+    bottom: 0;
+    left: 0;
+    transition-property: top, right, bottom, left;
+    transition-duration: 0.2s;
+    transition-timing-function: linear;
 }
-.car.first{
-  left: 12.5%;
-  transform: translateX(-50%);
+
+.car.first {
+    left: 12.5%;
+    transform: translateX(-50%);
 }
-.car.second{
-  left: 62.5%;
-  transform: translateX(-50%);
+
+.car.second {
+    left: 37.5%;
+    transform: translateX(-50%);
 }
-.car.third{
-  left: 87.5%;
-  transform: translateX(-50%);
+
+.car.third {
+    left: 62.5%;
+    transform: translateX(-50%);
+}
+
+.car.fourth {
+    left: 87.5%;
+    transform: translateX(-50%);
 }
