@@ -93,7 +93,6 @@ a {
     margin: 0 auto;
     position: relative;
     overflow: hidden;
-    /* transform: rotateX(60deg); */
 
     display: flex;
 }
@@ -154,12 +153,15 @@ a {
     width: 12.5%;
 }
 
-.car.user {
+.car-user {
+    position: absolute;
     bottom: 0;
     left: 0;
     transition-property: top, right, bottom, left;
     transition-duration: 0.2s;
     transition-timing-function: linear;
+    z-index: 9999;
+    width: 12.5%;
 }
 
 .car.first {
@@ -232,4 +234,17 @@ a {
 .mx-auto {
     margin-right: auto;
     margin-left: auto;
+}
+
+
+/*DRAG*/
+.container{
+    height: 80vh;
+    width: 80vw;
+    background-color: white;
+}
+.container .box {
+    height: 100px;
+    width: 100px;
+    background-color: gray;
 }

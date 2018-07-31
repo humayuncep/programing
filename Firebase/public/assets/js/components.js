@@ -9,7 +9,7 @@ const gameInterfaceComponent = (carName = 'dragon') => {
       <div class='street second'></div>
       <div class='street third'></div>
       <div class='street fourth'></div>
-      <img class='user car' src='assets/img/car-${carName}.svg' alt='usr car'/>
+      <img class='car-user' src='assets/img/car-${carName}.svg' alt='usr car'/>
     </div>
   `;
 };

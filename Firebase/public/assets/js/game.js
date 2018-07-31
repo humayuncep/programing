@@ -18,6 +18,7 @@ function gameInterfacePrepare() {
         clearInterval(countDowner);
         countDouwn.outerHTML = '';
         gameController();
+        // drag(Selector.CARUSER, Selector.STREETS);
         resolve(timer)
     }
     timer -= 1;
@@ -72,7 +73,7 @@ async function startGame() {
 -----------------------------------------------*/
 const gameController = () => {
   const streets = document.querySelector(Selector.STREETS);
-  const userCar = document.querySelector(`${Selector.CAR}${Selector.USER}`);
+  const userCar = document.querySelector(Selector.CARUSER);
   const SL = getCurrentPosition(streets);
   const CCL = getCurrentPosition(userCar);
   const right = SL.width - CCL.width;
@@ -97,6 +98,28 @@ const gameController = () => {
         if (CL.bottom < top) CL.bottom += distance;
         break;
     }
-    $(`${Selector.CAR}${Selector.USER}`).css(CL);
+    $(Selector.CARUSER).css(CL);
+  });
+};
+
+/*-----------------------------------------------
+|   Draggable Element in a Container
+-----------------------------------------------*/
+const drag = (element, container, gridWidth = 200, gridHeight = 200) => {
+  Draggable.create(element, {
+    type: 'x, y',
+    edgeResistance: 0.65,
+    bounds: container,
+    lockAxis: true,
+    throwProps: true,
+    liveSnap: false,
+    snap: {
+      x: function(endValue) {
+        return Math.round(endValue / gridWidth) * gridWidth;
+      },
+      y: function(endValue) {
+        return Math.round(endValue / gridHeight) * gridHeight;
+      }
+    }
   });
 };

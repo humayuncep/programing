@@ -5,6 +5,7 @@ const Selector = {
   STREETS: '.streets',
   STREET: '.streat',
   CAR: '.car',
+  CARUSER: '.car-user',
   USER: '.user',
   FIRST: '.first',
   SECOND: '.second',
@@ -16,6 +17,7 @@ const ClassName = {
   STREETS: 'streets',
   STREET: 'streat',
   CAR: 'car',
+  CARUSER: 'car-user',
   USER: 'user',
   FIRST: 'first',
   SECOND: 'second',
@@ -44,7 +46,8 @@ document.addEventListener('DOMContentLoaded', event => {
   firebase.initializeApp(config);
 
   // Initialize
-  initialize();
+  // initialize();
+  startGame();
 });
 
 /*-----------------------------------------------

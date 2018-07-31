@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>Car Racing</title>
+  <link href='https://fonts.googleapis.com/css?family=Racing+Sans+One' rel='stylesheet'>
+  <link rel='stylesheet' href='assets/css/style.css'>
+</head>
+<body>
+
+<main>
+  <div class="container">
+    <div class="box"></div>
+  </div>
+</main>
+
+<!-- GreenSock:GSAP -->
+<script src='assets/js/TimelineMax.min.js'></script>
+<script src='assets/js/TweenMax.min.js'></script>
+<script src='assets/js/Draggable.min.js'></script>
+<script src='assets/js/ThrowPropsPlugin.min.js'></script>
+<script>
+  document.addEventListener('DOMContentLoaded', event => {
+    console.log(event);
+    drag('.box', '.container');
+  });
+  const drag = (element, container, gridWidth = 200, gridHeight = 200) => {
+    Draggable.create(element, {
+      type: 'x, y',
+      edgeResistance: 0.65,
+      bounds: container,
+      lockAxis: false,
+      throwProps: true,
+      liveSnap: false,
+      snap: {
+        x: function(endValue) {
+          return Math.round(endValue / gridWidth) * gridWidth;
+        },
+        y: function(endValue) {
+          return Math.round(endValue / gridHeight) * gridHeight;
+        }
+      }
+    });
+  };
+</script>
+</body>
+</html>
+
